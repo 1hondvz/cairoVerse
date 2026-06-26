@@ -144,6 +144,7 @@ async def clear(interaction: discord.Interaction, عدد: int):
 @app_commands.describe(قناة="القناة اللي هتبعت فيها", رسالة="الرسالة")
 async def say(interaction: discord.Interaction, قناة: discord.TextChannel, رسالة: str):
     if not await check_role(interaction): return
+    رسالة = رسالة.replace("\\n", "\n")
     msg = await قناة.send(رسالة)
     last_bot_message[قناة.id] = msg
     await interaction.response.send_message(f"✅ تم إرسال الرسالة في {قناة.mention}", ephemeral=True)
